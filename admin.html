@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Admin Dashboard - JokiPro</title>
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/additional.css">
+    <style>
+        .admin-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+            padding-top: 100px;
+        }
+
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .admin-header h1 {
+            font-size: 2rem;
+            color: var(--text-primary);
+        }
+
+        .admin-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .stat-card .stat-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-card .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .stat-card .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .orders-table-wrapper {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .table-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--glass-border);
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .table-header h2 {
+            margin: 0;
+            font-size: 1.25rem;
+        }
+
+        .table-actions {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-sm {
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            color: white;
+        }
+
+        .orders-table {
+            width: 100%;
+            border-collapse: collapse;
+            overflow-x: auto;
+            display: block;
+        }
+
+        .orders-table thead,
+        .orders-table tbody,
+        .orders-table tr {
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+        }
+
+        .orders-table th,
+        .orders-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .orders-table th {
+            background: rgba(139, 92, 246, 0.1);
+            font-weight: 600;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-secondary);
+        }
+
+        .orders-table tbody tr:hover {
+            background: rgba(139, 92, 246, 0.05);
+        }
+
+        .orders-table td {
+            font-size: 0.9rem;
+            color: var(--text-primary);
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .status-new {
+            background: rgba(59, 130, 246, 0.2);
+            color: #3b82f6;
+        }
+
+        .status-process {
+            background: rgba(245, 158, 11, 0.2);
+            color: #f59e0b;
+        }
+
+        .status-done {
+            background: rgba(34, 197, 94, 0.2);
+            color: #22c55e;
+        }
+
+        .action-btns {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .action-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .action-btn.view {
+            background: rgba(59, 130, 246, 0.2);
+            color: #3b82f6;
+        }
+
+        .action-btn.whatsapp {
+            background: rgba(34, 197, 94, 0.2);
+            color: #22c55e;
+        }
+
+        .action-btn.delete {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+        }
+
+        .action-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--text-secondary);
+        }
+
+        .empty-state .empty-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Order Detail Modal */
+        .order-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 1rem;
+        }
+
+        .order-modal.active {
+            display: flex;
+        }
+
+        .order-modal-content {
+            background: var(--bg-primary);
+            border-radius: 20px;
+            max-width: 600px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .order-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .order-modal-header h3 {
+            margin: 0;
+        }
+
+        .order-modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-secondary);
+        }
+
+        .order-modal-body {
+            padding: 1.5rem;
+        }
+
+        .order-detail-item {
+            margin-bottom: 1rem;
+        }
+
+        .order-detail-item label {
+            display: block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-secondary);
+            margin-bottom: 0.25rem;
+        }
+
+        .order-detail-item p {
+            margin: 0;
+            color: var(--text-primary);
+            font-size: 1rem;
+        }
+
+        .order-modal-footer {
+            padding: 1.5rem;
+            border-top: 1px solid var(--glass-border);
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .status-select {
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            border: 1px solid var(--glass-border);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .admin-container {
+                padding: 1rem;
+                padding-top: 80px;
+            }
+
+            .orders-table th,
+            .orders-table td {
+                padding: 0.75rem 0.5rem;
+                font-size: 0.8rem;
+            }
+
+            .orders-table thead,
+            .orders-table tbody,
+            .orders-table tr {
+                display: block;
+            }
+
+            .orders-table thead {
+                display: none;
+            }
+
+            .orders-table tr {
+                margin-bottom: 1rem;
+                border: 1px solid var(--glass-border);
+                border-radius: 12px;
+                padding: 1rem;
+            }
+
+            .orders-table td {
+                display: flex;
+                justify-content: space-between;
+                border: none;
+                padding: 0.5rem 0;
+            }
+
+            .orders-table td::before {
+                content: attr(data-label);
+                font-weight: 600;
+                color: var(--text-secondary);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">📚</span>
+                <span class="logo-text">Joki<span class="highlight">Pro</span></span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Beranda</a></li>
+                <li><a href="layanan.html">Layanan</a></li>
+                <li><a href="harga.html">Harga</a></li>
+                <li><a href="cara-kerja.html">Cara Kerja</a></li>
+                <li><a href="kontak.html">Kontak</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle Theme">
+                    <span class="sun-icon">☀️</span>
+                    <span class="moon-icon">🌙</span>
+                </button>
+                <a href="kontak.html" class="btn btn-primary">Pesan Sekarang</a>
+                <button class="hamburger" id="hamburger" aria-label="Menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="admin-container">
+        <div class="admin-header">
+            <h1>📊 Dashboard Admin</h1>
+            <div class="table-actions">
+                <button class="btn btn-outline btn-sm" onclick="exportToCSV()">📥 Export CSV</button>
+                <button class="btn btn-danger btn-sm" onclick="clearAllOrders()">🗑️ Hapus Semua</button>
+            </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="admin-stats">
+            <div class="stat-card">
+                <div class="stat-icon">📦</div>
+                <div class="stat-value" id="totalOrders">0</div>
+                <div class="stat-label">Total Order</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">🆕</div>
+                <div class="stat-value" id="newOrders">0</div>
+                <div class="stat-label">Order Baru</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">⚙️</div>
+                <div class="stat-value" id="processOrders">0</div>
+                <div class="stat-label">Diproses</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">✅</div>
+                <div class="stat-value" id="doneOrders">0</div>
+                <div class="stat-label">Selesai</div>
+            </div>
+        </div>
+
+        <!-- Orders Table -->
+        <div class="orders-table-wrapper">
+            <div class="table-header">
+                <h2>📋 Daftar Order</h2>
+            </div>
+            <table class="orders-table">
+                <thead>
+                    <tr>
+                        <th style="width: 15%;">Tanggal</th>
+                        <th style="width: 15%;">Nama</th>
+                        <th style="width: 15%;">Layanan</th>
+                        <th style="width: 12%;">Deadline</th>
+                        <th style="width: 13%;">Status</th>
+                        <th style="width: 15%;">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody id="ordersTableBody">
+                    <!-- Orders will be loaded here -->
+                </tbody>
+            </table>
+            <div class="empty-state" id="emptyState" style="display: none;">
+                <div class="empty-icon">📭</div>
+                <h3>Belum Ada Order</h3>
+                <p>Order yang masuk akan ditampilkan di sini.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Order Detail Modal -->
+    <div class="order-modal" id="orderModal">
+        <div class="order-modal-content">
+            <div class="order-modal-header">
+                <h3>📝 Detail Order</h3>
+                <button class="order-modal-close" onclick="closeOrderModal()">&times;</button>
+            </div>
+            <div class="order-modal-body" id="orderModalBody">
+                <!-- Order details will be loaded here -->
+            </div>
+            <div class="order-modal-footer">
+                <select class="status-select" id="statusSelect" onchange="updateOrderStatus()">
+                    <option value="new">🆕 Baru</option>
+                    <option value="process">⚙️ Diproses</option>
+                    <option value="done">✅ Selesai</option>
+                </select>
+                <button class="btn btn-whatsapp btn-sm" id="whatsappBtn">💬 Hubungi WhatsApp</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script>
+        let currentOrderId = null;
+
+        // Load orders on page load
+        document.addEventListener('DOMContentLoaded', function () {
+            loadOrders();
+            updateStats();
+        });
+
+        function getOrders() {
+            const orders = localStorage.getItem('jokipro_orders');
+            return orders ? JSON.parse(orders) : [];
+        }
+
+        function saveOrders(orders) {
+            localStorage.setItem('jokipro_orders', JSON.stringify(orders));
+        }
+
+        function loadOrders() {
+            const orders = getOrders();
+            const tbody = document.getElementById('ordersTableBody');
+            const emptyState = document.getElementById('emptyState');
+
+            if (orders.length === 0) {
+                tbody.innerHTML = '';
+                emptyState.style.display = 'block';
+                return;
+            }
+
+            emptyState.style.display = 'none';
+
+            // Sort by date (newest first)
+            orders.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+
+            tbody.innerHTML = orders.map(order => `
+                <tr>
+                    <td data-label="Tanggal">${formatDate(order.timestamp)}</td>
+                    <td data-label="Nama">${order.name}</td>
+                    <td data-label="Layanan">${formatService(order.service)}</td>
+                    <td data-label="Deadline">${order.deadline}</td>
+                    <td data-label="Status">
+                        <span class="status-badge status-${order.status || 'new'}">
+                            ${getStatusLabel(order.status || 'new')}
+                        </span>
+                    </td>
+                    <td data-label="Aksi">
+                        <div class="action-btns">
+                            <button class="action-btn view" onclick="viewOrder('${order.id}')" title="Lihat Detail">👁️</button>
+                            <button class="action-btn whatsapp" onclick="contactWhatsApp('${order.phone}', '${order.name}')" title="WhatsApp">💬</button>
+                            <button class="action-btn delete" onclick="deleteOrder('${order.id}')" title="Hapus">🗑️</button>
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function formatDate(timestamp) {
+            const date = new Date(timestamp);
+            return date.toLocaleDateString('id-ID', {
+                day: '2-digit',
+                month: 'short',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+        }
+
+        function formatService(service) {
+            const services = {
+                'essay': 'Essay & Makalah',
+                'skripsi': 'Skripsi/Thesis',
+                'programming': 'Programming',
+                'analisis': 'Analisis Data',
+                'desain': 'Desain',
+                'matematika': 'Matematika',
+                'akuntansi': 'Akuntansi',
+                'lainnya': 'Lainnya'
+            };
+            return services[service] || service;
+        }
+
+        function getStatusLabel(status) {
+            const labels = {
+                'new': '🆕 Baru',
+                'process': '⚙️ Diproses',
+                'done': '✅ Selesai'
+            };
+            return labels[status] || status;
+        }
+
+        function updateStats() {
+            const orders = getOrders();
+            document.getElementById('totalOrders').textContent = orders.length;
+            document.getElementById('newOrders').textContent = orders.filter(o => !o.status || o.status === 'new').length;
+            document.getElementById('processOrders').textContent = orders.filter(o => o.status === 'process').length;
+            document.getElementById('doneOrders').textContent = orders.filter(o => o.status === 'done').length;
+        }
+
+        function viewOrder(id) {
+            const orders = getOrders();
+            const order = orders.find(o => o.id === id);
+
+            if (!order) return;
+
+            currentOrderId = id;
+
+            document.getElementById('orderModalBody').innerHTML = `
+                <div class="order-detail-item">
+                    <label>ID Order</label>
+                    <p>${order.id}</p>
+                </div>
+                <div class="order-detail-item">
+                    <label>Tanggal Order</label>
+                    <p>${formatDate(order.timestamp)}</p>
+                </div>
+                <div class="order-detail-item">
+                    <label>Nama</label>
+                    <p>${order.name}</p>
+                </div>
+                <div class="order-detail-item">
+                    <label>WhatsApp</label>
+                    <p>${order.phone}</p>
+                </div>
+                <div class="order-detail-item">
+                    <label>Email</label>
+                    <p>${order.email || '-'}</p>
+                </div>
+                <div class="order-detail-item">
+                    <label>Layanan</label>
+                    <p>${formatService(order.service)}</p>
+                </div>
+                <div class="order-detail-item">
+                    <label>Mata Kuliah</label>
+                    <p>${order.subject || '-'}</p>
+                </div>
+                <div class="order-detail-item">
+                    <label>Deadline</label>
+                    <p>${order.deadline}</p>
+                </div>
+                <div class="order-detail-item">
+                    <label>Budget</label>
+                    <p>${order.budget || '-'}</p>
+                </div>
+                <div class="order-detail-item">
+                    <label>Detail Tugas</label>
+                    <p style="white-space: pre-wrap;">${order.details}</p>
+                </div>
+            `;
+
+            document.getElementById('statusSelect').value = order.status || 'new';
+            document.getElementById('whatsappBtn').onclick = () => contactWhatsApp(order.phone, order.name);
+            document.getElementById('orderModal').classList.add('active');
+        }
+
+        function closeOrderModal() {
+            document.getElementById('orderModal').classList.remove('active');
+            currentOrderId = null;
+        }
+
+        function updateOrderStatus() {
+            if (!currentOrderId) return;
+
+            const orders = getOrders();
+            const orderIndex = orders.findIndex(o => o.id === currentOrderId);
+
+            if (orderIndex !== -1) {
+                orders[orderIndex].status = document.getElementById('statusSelect').value;
+                saveOrders(orders);
+                loadOrders();
+                updateStats();
+            }
+        }
+
+        function contactWhatsApp(phone, name) {
+            // Clean phone number
+            let cleanPhone = phone.replace(/[^0-9]/g, '');
+            if (cleanPhone.startsWith('0')) {
+                cleanPhone = '62' + cleanPhone.substring(1);
+            }
+
+            const message = encodeURIComponent(`Halo ${name}, terima kasih sudah order di JokiPro! 😊\n\nKami ingin konfirmasi detail tugas Anda...`);
+            window.open(`https://wa.me/${cleanPhone}?text=${message}`, '_blank');
+        }
+
+        function deleteOrder(id) {
+            if (!confirm('Yakin ingin menghapus order ini?')) return;
+
+            let orders = getOrders();
+            orders = orders.filter(o => o.id !== id);
+            saveOrders(orders);
+            loadOrders();
+            updateStats();
+        }
+
+        function clearAllOrders() {
+            if (!confirm('Yakin ingin menghapus SEMUA order? Tindakan ini tidak bisa dibatalkan!')) return;
+
+            localStorage.removeItem('jokipro_orders');
+            loadOrders();
+            updateStats();
+        }
+
+        function exportToCSV() {
+            const orders = getOrders();
+
+            if (orders.length === 0) {
+                alert('Tidak ada order untuk di-export!');
+                return;
+            }
+
+            const headers = ['ID', 'Tanggal', 'Nama', 'WhatsApp', 'Email', 'Layanan', 'Mata Kuliah', 'Deadline', 'Budget', 'Detail', 'Status'];
+
+            const csvContent = [
+                headers.join(','),
+                ...orders.map(order => [
+                    order.id,
+                    formatDate(order.timestamp),
+                    `"${order.name}"`,
+                    order.phone,
+                    order.email || '',
+                    formatService(order.service),
+                    `"${order.subject || ''}"`,
+                    order.deadline,
+                    `"${order.budget || ''}"`,
+                    `"${order.details.replace(/"/g, '""')}"`,
+                    order.status || 'new'
+                ].join(','))
+            ].join('\n');
+
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = `orders_jokipro_${new Date().toISOString().split('T')[0]}.csv`;
+            link.click();
+        }
+
+        // Close modal on escape key
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') {
+                closeOrderModal();
+            }
+        });
+
+        // Close modal on outside click
+        document.getElementById('orderModal').addEventListener('click', function (e) {
+            if (e.target === this) {
+                closeOrderModal();
+            }
+        });
+    </script>
+</body>
+
+</html>

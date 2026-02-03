@@ -218,6 +218,18 @@
 
     <script src="js/main.js"></script>
     <script>
+        // Generate unique ID
+        function generateOrderId() {
+            return 'ORD-' + Date.now().toString(36).toUpperCase() + Math.random().toString(36).substring(2, 5).toUpperCase();
+        }
+
+        // Save order to localStorage
+        function saveOrderToStorage(orderData) {
+            const orders = JSON.parse(localStorage.getItem('jokipro_orders') || '[]');
+            orders.push(orderData);
+            localStorage.setItem('jokipro_orders', JSON.stringify(orders));
+        }
+
         // Form submission handler
         document.getElementById('orderForm').addEventListener('submit', function (e) {
             e.preventDefault();
@@ -228,22 +240,46 @@
             submitBtn.innerHTML = '<span class="spinner"></span> Mengirim...';
             submitBtn.disabled = true;
 
+            // Get form data
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const email = document.getElementById('email').value;
+            const service = document.getElementById('service').value;
+            const subject = document.getElementById('subject').value;
+            const deadline = document.getElementById('deadline').value;
+            const details = document.getElementById('details').value;
+            const budget = document.getElementById('budget').value;
+
+            // Create order object
+            const orderData = {
+                id: generateOrderId(),
+                timestamp: new Date().toISOString(),
+                name: name,
+                phone: phone,
+                email: email,
+                service: service,
+                subject: subject,
+                deadline: deadline,
+                details: details,
+                budget: budget,
+                status: 'new'
+            };
+
+            // Save to localStorage
+            saveOrderToStorage(orderData);
+            console.log('✅ Order saved:', orderData);
+
             // Simulate form submission
             setTimeout(() => {
                 this.style.display = 'none';
                 document.getElementById('formSuccess').style.display = 'block';
 
                 // Create WhatsApp message
-                const name = document.getElementById('name').value;
-                const phone = document.getElementById('phone').value;
-                const service = document.getElementById('service').value;
-                const deadline = document.getElementById('deadline').value;
-                const details = document.getElementById('details').value;
-
                 const message = `Halo JokiPro! 👋
 
 *ORDER BARU*
 ━━━━━━━━━━━━━━━━
+🆔 ID: ${orderData.id}
 📌 Nama: ${name}
 📱 WA: ${phone}
 📋 Layanan: ${service}
