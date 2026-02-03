@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Kontak JokiPro - Pesan jasa joki tugas atau hubungi kami untuk konsultasi gratis.">
+    <title>Kontak - JokiPro | Jasa Joki Tugas Profesional</title>
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/additional.css">
+    <link rel="stylesheet" href="css/pages.css">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">📚</span>
+                <span class="logo-text">Joki<span class="highlight">Pro</span></span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Beranda</a></li>
+                <li><a href="layanan.html">Layanan</a></li>
+                <li><a href="harga.html">Harga</a></li>
+                <li><a href="cara-kerja.html">Cara Kerja</a></li>
+                <li><a href="kontak.html" class="active">Kontak</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle Theme">
+                    <span class="sun-icon">☀️</span>
+                    <span class="moon-icon">🌙</span>
+                </button>
+                <a href="kontak.html" class="btn btn-primary">Pesan Sekarang</a>
+                <button class="hamburger" id="hamburger" aria-label="Menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <span class="section-badge">Hubungi Kami</span>
+            <h1 class="page-title">Pesan <span class="gradient-text">Sekarang</span></h1>
+            <p class="page-subtitle">Isi form di bawah atau langsung chat WhatsApp untuk konsultasi gratis!</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="container">
+            <div class="contact-grid">
+                <!-- Contact Form -->
+                <div class="contact-form-wrapper">
+                    <h2>Form Order</h2>
+                    <p>Isi detail tugas Anda dan tim kami akan segera menghubungi Anda.</p>
+
+                    <form id="orderForm" class="contact-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">Nama Lengkap *</label>
+                                <input type="text" id="name" name="name" required placeholder="Masukkan nama Anda">
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">No. WhatsApp *</label>
+                                <input type="tel" id="phone" name="phone" required placeholder="08xxxxxxxxxx">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" placeholder="email@example.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="service">Jenis Layanan *</label>
+                                <select id="service" name="service" required>
+                                    <option value="">Pilih Layanan</option>
+                                    <option value="essay">Essay & Makalah</option>
+                                    <option value="skripsi">Skripsi / Thesis</option>
+                                    <option value="programming">Programming / Coding</option>
+                                    <option value="analisis">Analisis Data</option>
+                                    <option value="desain">Desain & Multimedia</option>
+                                    <option value="matematika">Matematika / Kalkulus</option>
+                                    <option value="akuntansi">Akuntansi / Keuangan</option>
+                                    <option value="lainnya">Lainnya</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="subject">Mata Kuliah / Jurusan</label>
+                                <input type="text" id="subject" name="subject" placeholder="Contoh: Ekonomi Mikro">
+                            </div>
+                            <div class="form-group">
+                                <label for="deadline">Deadline *</label>
+                                <input type="date" id="deadline" name="deadline" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="details">Detail Tugas *</label>
+                            <textarea id="details" name="details" rows="5" required
+                                placeholder="Jelaskan detail tugas Anda: jumlah halaman, format yang diinginkan, instruksi khusus, dll."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="budget">Estimasi Budget (opsional)</label>
+                            <input type="text" id="budget" name="budget" placeholder="Contoh: Rp 200.000 - Rp 500.000">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-lg btn-block">
+                            <span>📤</span> Kirim Order
+                        </button>
+
+                        <p class="form-note">* Data Anda aman dan tidak akan dibagikan ke pihak manapun</p>
+                    </form>
+
+                    <div class="form-success" id="formSuccess" style="display: none;">
+                        <div class="success-icon">✅</div>
+                        <h3>Order Terkirim!</h3>
+                        <p>Terima kasih! Tim kami akan menghubungi Anda via WhatsApp dalam 1 jam.</p>
+                        <a href="index.html" class="btn btn-outline">Kembali ke Beranda</a>
+                    </div>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="contact-info">
+                    <div class="info-card highlight">
+                        <div class="info-icon">📱</div>
+                        <h3>Chat WhatsApp</h3>
+                        <p>Respon cepat dalam hitungan menit!</p>
+                        <a href="https://wa.me/628978672534" class="btn btn-whatsapp" target="_blank">
+                            Chat Sekarang
+                        </a>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="info-icon">✉️</div>
+                        <h3>Email</h3>
+                        <p>ferdiyansyahpp@gmail.com</p>
+                        <a href="mailto:ferdiyansyahpp@gmail.com">Kirim Email</a>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="info-icon">⏰</div>
+                        <h3>Jam Operasional</h3>
+                        <p>24/7 Customer Support</p>
+                        <span class="status-badge online">● Online Now</span>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="info-icon">📍</div>
+                        <h3>Sosial Media</h3>
+                        <div class="social-links-contact">
+                            <a href="https://instagram.com/ferdiyansyah_66" class="social-btn" target="_blank">📷
+                                Instagram</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">
+                        <span class="logo-icon">📚</span>
+                        <span class="logo-text">Joki<span class="highlight">Pro</span></span>
+                    </a>
+                    <p>Layanan joki tugas profesional terpercaya.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Layanan</h4>
+                    <ul>
+                        <li><a href="layanan.html">Essay & Makalah</a></li>
+                        <li><a href="layanan.html">Skripsi & Thesis</a></li>
+                        <li><a href="layanan.html">Programming</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Perusahaan</h4>
+                    <ul>
+                        <li><a href="cara-kerja.html">Cara Kerja</a></li>
+                        <li><a href="harga.html">Harga</a></li>
+                        <li><a href="kontak.html">Kontak</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Hubungi Kami</h4>
+                    <ul>
+                        <li><span>📱</span> +62 897-867-2534</li>
+                        <li><span>✉️</span> ferdiyansyahpp@gmail.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 JokiPro. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/628978672534" class="floating-wa" target="_blank" aria-label="Chat WhatsApp">
+        <span>💬</span>
+    </a>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Form submission handler
+        document.getElementById('orderForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Show loading state
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<span class="spinner"></span> Mengirim...';
+            submitBtn.disabled = true;
+
+            // Simulate form submission
+            setTimeout(() => {
+                this.style.display = 'none';
+                document.getElementById('formSuccess').style.display = 'block';
+
+                // Create WhatsApp message
+                const name = document.getElementById('name').value;
+                const phone = document.getElementById('phone').value;
+                const service = document.getElementById('service').value;
+                const deadline = document.getElementById('deadline').value;
+                const details = document.getElementById('details').value;
+
+                const message = `Halo JokiPro! 👋
+
+*ORDER BARU*
+━━━━━━━━━━━━━━━━
+📌 Nama: ${name}
+📱 WA: ${phone}
+📋 Layanan: ${service}
+📅 Deadline: ${deadline}
+
+📝 Detail Tugas:
+${details}
+
+Mohon info harga dan estimasi pengerjaan. Terima kasih!`;
+
+                // Encode message for WhatsApp URL
+                const encodedMessage = encodeURIComponent(message);
+
+                // Open WhatsApp after 2 seconds
+                setTimeout(() => {
+                    window.open(`https://wa.me/628978672534?text=${encodedMessage}`, '_blank');
+                }, 2000);
+            }, 1500);
+        });
+
+        // Set minimum date to today
+        document.getElementById('deadline').min = new Date().toISOString().split('T')[0];
+    </script>
+</body>
+
+</html>
