@@ -360,6 +360,12 @@ h6 {
     font-weight: 800;
 }
 
+.logo-img {
+    height: 40px;
+    width: auto;
+    display: block;
+}
+
 .logo-icon {
     font-size: 1.75rem;
 }
