@@ -33,7 +33,7 @@ function renderPortfolio(filter = 'all') {
     grid.innerHTML = filtered.map(item => `
         <div class="portfolio-card" data-category="${item.category}">
             <div class="portfolio-image" data-category="${item.category}">
-                <img src="assets/portfolio/${item.id}.svg" alt="${item.title}" loading="lazy" class="portfolio-img">
+                <img src="assets/images/${item.id}.jpg" alt="${item.title}" loading="lazy" class="portfolio-img">
             </div>
             <div class="portfolio-content">
                 <h3>${item.title}</h3>
@@ -67,7 +67,7 @@ function showPortfolioDetail(id) {
 
     document.getElementById('lightboxTitle').textContent = data.title;
     document.getElementById('lightboxBody').innerHTML = `
-        <div class="lightbox-preview"><img src="assets/portfolio/${id}.svg" alt="${data.title}" class="lightbox-img"></div>
+        <div class="lightbox-preview"><img src="assets/images/${id}.jpg" alt="${data.title}" class="lightbox-img"></div>
         <div style="margin-bottom:1rem;">
             <span style="background:rgba(139,92,246,0.2);color:var(--primary);padding:0.5rem 1rem;border-radius:20px;">${data.category}</span>
             <span style="background:rgba(34,197,94,0.2);color:#22c55e;padding:0.5rem 1rem;border-radius:20px;margin-left:0.5rem;">⭐ ${data.grade}</span>
