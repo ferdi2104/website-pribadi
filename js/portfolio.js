@@ -1,14 +1,14 @@
 // Portfolio Data
 const portfolioItems = [
-    { id: 'essay1', category: 'essay', icon: '📝', badge: 'Essay', grade: 'A+', title: 'Essay Ekonomi Mikro', desc: 'Analisis tentang teori permintaan dan penawaran dalam pasar kompetitif.', meta: ['📄 15 Halaman', '⏱️ 3 Hari', '📚 Ekonomi'], client: '👨‍🎓', name: 'Budi S.', univ: 'Mahasiswa UI' },
-    { id: 'skripsi1', category: 'skripsi', icon: '🎓', badge: 'Skripsi', grade: 'A', title: 'Skripsi Manajemen SDM', desc: 'Penelitian kuantitatif tentang pengaruh motivasi kerja terhadap produktivitas.', meta: ['📄 85 Halaman', '⏱️ 30 Hari', '📚 Manajemen'], client: '👩‍🎓', name: 'Sarah P.', univ: 'Mahasiswa UGM' },
-    { id: 'prog1', category: 'programming', icon: '💻', badge: 'Programming', grade: '95', title: 'Sistem Inventory Python', desc: 'Aplikasi manajemen inventory berbasis Python dengan GUI dan SQLite.', meta: ['💻 Python', '⏱️ 7 Hari', '📦 500+ LOC'], client: '👨‍💻', name: 'Ahmad R.', univ: 'Mahasiswa ITB' },
-    { id: 'analisis1', category: 'analisis', icon: '📊', badge: 'Analisis Data', grade: 'A+', title: 'Analisis Regresi SPSS', desc: 'Analisis regresi linear berganda untuk penelitian marketing mix.', meta: ['📊 SPSS', '⏱️ 5 Hari', '📈 Output Lengkap'], client: '👩‍💼', name: 'Dewi K.', univ: 'Mahasiswa UNPAD' },
-    { id: 'desain1', category: 'desain', icon: '🎨', badge: 'Desain', grade: 'A', title: 'Presentasi Bisnis Modern', desc: 'PowerPoint profesional dengan desain modern untuk business plan.', meta: ['🎨 PowerPoint', '⏱️ 2 Hari', '📑 25 Slides'], client: '👨‍💼', name: 'Rizky M.', univ: 'Mahasiswa BINUS' },
-    { id: 'prog2', category: 'programming', icon: '🌐', badge: 'Programming', grade: 'A+', title: 'Website E-Commerce', desc: 'Website toko online dengan PHP & MySQL. Fitur cart, checkout, admin panel.', meta: ['💻 PHP & MySQL', '⏱️ 14 Hari', '🛒 Full Stack'], client: '👩‍💻', name: 'Lisa A.', univ: 'Mahasiswa Telkom' },
-    { id: 'essay2', category: 'essay', icon: '📄', badge: 'Makalah', grade: 'A', title: 'Makalah Hukum Perdata', desc: 'Analisis tentang perjanjian jual beli dalam perspektif KUHPerdata.', meta: ['📄 20 Halaman', '⏱️ 5 Hari', '⚖️ Hukum'], client: '👨‍⚖️', name: 'Andi W.', univ: 'Mahasiswa UNAIR' },
-    { id: 'skripsi2', category: 'skripsi', icon: '📖', badge: 'Skripsi', grade: 'A', title: 'Skripsi Akuntansi', desc: 'Penelitian GCG terhadap nilai perusahaan pada perusahaan LQ45.', meta: ['📄 90 Halaman', '⏱️ 45 Hari', '💹 Akuntansi'], client: '👩‍🎓', name: 'Maya S.', univ: 'Mahasiswa Trisakti' },
-    { id: 'analisis2', category: 'analisis', icon: '📈', badge: 'Analisis Data', grade: '98', title: 'SEM-PLS Analysis', desc: 'Analisis Structural Equation Modeling menggunakan SmartPLS.', meta: ['📊 SmartPLS', '⏱️ 7 Hari', '📈 Full Report'], client: '👨‍🔬', name: 'Fajar H.', univ: 'Mahasiswa UB' }
+    { id: 'essay1', category: 'essay', icon: '📝', badge: 'Essay', grade: 'A+', title: 'Essay Ekonomi Mikro', img: 'essay-ekonomi-mikro.jpg', desc: 'Analisis tentang teori permintaan dan penawaran dalam pasar kompetitif.', meta: ['📄 15 Halaman', '⏱️ 3 Hari', '📚 Ekonomi'], client: '👨‍🎓', name: 'Budi S.', univ: 'Mahasiswa UI' },
+    { id: 'skripsi1', category: 'skripsi', icon: '🎓', badge: 'Skripsi', grade: 'A', title: 'Skripsi Manajemen SDM', img: 'skripsi-manajemen-sdm.jpg', desc: 'Penelitian kuantitatif tentang pengaruh motivasi kerja terhadap produktivitas.', meta: ['📄 85 Halaman', '⏱️ 30 Hari', '📚 Manajemen'], client: '👩‍🎓', name: 'Sarah P.', univ: 'Mahasiswa UGM' },
+    { id: 'prog1', category: 'programming', icon: '💻', badge: 'Programming', grade: '95', title: 'Sistem Inventory Python', img: 'sistem-inventory-python.jpg', desc: 'Aplikasi manajemen inventory berbasis Python dengan GUI dan SQLite.', meta: ['💻 Python', '⏱️ 7 Hari', '📦 500+ LOC'], client: '👨‍💻', name: 'Ahmad R.', univ: 'Mahasiswa ITB' },
+    { id: 'analisis1', category: 'analisis', icon: '📊', badge: 'Analisis Data', grade: 'A+', title: 'Analisis Regresi SPSS', img: 'analisis-regresi-spss.jpg', desc: 'Analisis regresi linear berganda untuk penelitian marketing mix.', meta: ['📊 SPSS', '⏱️ 5 Hari', '📈 Output Lengkap'], client: '👩‍💼', name: 'Dewi K.', univ: 'Mahasiswa UNPAD' },
+    { id: 'desain1', category: 'desain', icon: '🎨', badge: 'Desain', grade: 'A', title: 'Presentasi Bisnis Modern', img: 'presentasi-bisnis-modern.jpg', desc: 'PowerPoint profesional dengan desain modern untuk business plan.', meta: ['🎨 PowerPoint', '⏱️ 2 Hari', '📑 25 Slides'], client: '👨‍💼', name: 'Rizky M.', univ: 'Mahasiswa BINUS' },
+    { id: 'prog2', category: 'programming', icon: '🌐', badge: 'Programming', grade: 'A+', title: 'Website E-Commerce', img: 'website-e-commerce.jpg', desc: 'Website toko online dengan PHP & MySQL. Fitur cart, checkout, admin panel.', meta: ['💻 PHP & MySQL', '⏱️ 14 Hari', '🛒 Full Stack'], client: '👩‍💻', name: 'Lisa A.', univ: 'Mahasiswa Telkom' },
+    { id: 'essay2', category: 'essay', icon: '📄', badge: 'Makalah', grade: 'A', title: 'Makalah Hukum Perdata', img: 'makalah-hukum-perdata.jpg', desc: 'Analisis tentang perjanjian jual beli dalam perspektif KUHPerdata.', meta: ['📄 20 Halaman', '⏱️ 5 Hari', '⚖️ Hukum'], client: '👨‍⚖️', name: 'Andi W.', univ: 'Mahasiswa UNAIR' },
+    { id: 'skripsi2', category: 'skripsi', icon: '📖', badge: 'Skripsi', grade: 'A', title: 'Skripsi Akuntansi', img: 'skripsi-akuntansi.jpg', desc: 'Penelitian GCG terhadap nilai perusahaan pada perusahaan LQ45.', meta: ['📄 90 Halaman', '⏱️ 45 Hari', '💹 Akuntansi'], client: '👩‍🎓', name: 'Maya S.', univ: 'Mahasiswa Trisakti' },
+    { id: 'analisis2', category: 'analisis', icon: '📈', badge: 'Analisis Data', grade: '98', title: 'SEM-PLS Analysis', img: 'sem-pls-analysis.jpg', desc: 'Analisis Structural Equation Modeling menggunakan SmartPLS.', meta: ['📊 SmartPLS', '⏱️ 7 Hari', '📈 Full Report'], client: '👨‍🔬', name: 'Fajar H.', univ: 'Mahasiswa UB' }
 ];
 
 const portfolioDetails = {
@@ -33,7 +33,7 @@ function renderPortfolio(filter = 'all') {
     grid.innerHTML = filtered.map(item => `
         <div class="portfolio-card" data-category="${item.category}">
             <div class="portfolio-image" data-category="${item.category}">
-                <img src="assets/images/${item.id}.jpg" alt="${item.title}" loading="lazy" class="portfolio-img">
+                <img src="assets/images/${item.img}" alt="${item.title}" loading="lazy" class="portfolio-img">
             </div>
             <div class="portfolio-content">
                 <h3>${item.title}</h3>
@@ -63,11 +63,12 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
 // Show Detail
 function showPortfolioDetail(id) {
     const data = portfolioDetails[id];
-    if (!data) return;
+    const item = portfolioItems.find(i => i.id === id);
+    if (!data || !item) return;
 
     document.getElementById('lightboxTitle').textContent = data.title;
     document.getElementById('lightboxBody').innerHTML = `
-        <div class="lightbox-preview"><img src="assets/images/${id}.jpg" alt="${data.title}" class="lightbox-img"></div>
+        <div class="lightbox-preview"><img src="assets/images/${item.img}" alt="${data.title}" class="lightbox-img"></div>
         <div style="margin-bottom:1rem;">
             <span style="background:rgba(139,92,246,0.2);color:var(--primary);padding:0.5rem 1rem;border-radius:20px;">${data.category}</span>
             <span style="background:rgba(34,197,94,0.2);color:#22c55e;padding:0.5rem 1rem;border-radius:20px;margin-left:0.5rem;">⭐ ${data.grade}</span>
