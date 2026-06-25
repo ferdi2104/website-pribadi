@@ -20,9 +20,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/additional.css">
-    <link rel="stylesheet" href="css/pages.css">
+    <link rel="stylesheet" href="css/style.min.css">
+    <link rel="stylesheet" href="css/additional.min.css">
+    <link rel="stylesheet" href="css/pages.min.css">
     <style>
         .payment-section {
             padding: 4rem 0;
@@ -486,8 +486,9 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <a href="index.html" class="logo"><span class="logo-icon">📚</span><span class="logo-text">Joki<span
-                                class="highlight">Pro</span></span></a>
+                    <a href="index.html" class="logo">
+                        <img src="assets/logo.jpg" alt="JokiPro" class="logo-img">
+                    </a>
                     <p>Layanan joki tugas profesional terpercaya.</p>
                 </div>
                 <div class="footer-links">
@@ -504,6 +505,7 @@
                         <li><a href="cara-kerja.html">Cara Kerja</a></li>
                         <li><a href="harga.html">Harga</a></li>
                         <li><a href="pembayaran.html">Pembayaran</a></li>
+                        <li><a href="login.html">🔐 Login Admin</a></li>
                     </ul>
                 </div>
                 <div class="footer-contact">
@@ -522,7 +524,7 @@
 
     <a href="https://wa.me/628978672534" class="floating-wa" target="_blank"
         aria-label="Chat WhatsApp"><span>💬</span></a>
-    <script src="js/main.js"></script>
+    <script src="js/main.min.js"></script>
     <script>
         function copyToClipboard(text, btn) {
             navigator.clipboard.writeText(text).then(() => {

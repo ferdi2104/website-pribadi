@@ -20,8 +20,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/additional.css">
+    <link rel="stylesheet" href="css/style.min.css">
+    <link rel="stylesheet" href="css/additional.min.css">
     <style>
         .login-page {
             min-height: 100vh;
@@ -245,21 +245,17 @@
         </div>
     </div>
 
-    <script src="js/main.js"></script>
+    <script src="js/main.min.js"></script>
     <script>
-        // Simple admin credentials (in production, use proper backend auth)
         const ADMIN_CREDENTIALS = {
             username: 'admin',
-            // Password hash for 'jokipro2024' - simple btoa encoding for demo
             passwordHash: 'am9raXBybzIwMjQ='
         };
 
-        // Check if already logged in
         if (sessionStorage.getItem('jokipro_admin_auth') === 'true') {
             window.location.href = 'admin.html';
         }
 
-        // Toggle password visibility
         function togglePassword() {
             const input = document.getElementById('password');
             const btn = document.getElementById('toggleBtn');
@@ -272,29 +268,29 @@
             }
         }
 
-        // Login form handler
         document.getElementById('loginForm').addEventListener('submit', function (e) {
             e.preventDefault();
 
-            const username = document.getElementById('username').value.trim();
+            const username = document.getElementById('username').value.trim().toLowerCase();
             const password = document.getElementById('password').value;
             const errorMsg = document.getElementById('errorMessage');
             const loginBtn = document.getElementById('loginBtn');
 
-            // Show loading
             loginBtn.disabled = true;
             loginBtn.innerHTML = '<div class="spinner"></div> Memverifikasi...';
             errorMsg.classList.remove('show');
 
-            // Simulate server delay
             setTimeout(() => {
-                // Check credentials
                 const passwordHash = btoa(password);
+                let loginSuccess = false;
 
                 if (username === ADMIN_CREDENTIALS.username && passwordHash === ADMIN_CREDENTIALS.passwordHash) {
-                    // Success
+                    loginSuccess = true;
+                }
+
+                if (loginSuccess) {
                     sessionStorage.setItem('jokipro_admin_auth', 'true');
-                    sessionStorage.setItem('jokipro_admin_user', username);
+                    sessionStorage.setItem('jokipro_admin_user', 'Admin');
                     sessionStorage.setItem('jokipro_admin_login_time', new Date().toISOString());
 
                     loginBtn.innerHTML = '✅ Berhasil! Mengalihkan...';
@@ -304,13 +300,11 @@
                         window.location.href = 'admin.html';
                     }, 1000);
                 } else {
-                    // Failed
                     errorMsg.classList.add('show');
                     document.getElementById('password').classList.add('error');
                     loginBtn.disabled = false;
                     loginBtn.innerHTML = '<span>🔓</span> Login';
 
-                    // Shake animation
                     document.querySelector('.login-container').style.animation = 'shake 0.5s ease';
                     setTimeout(() => {
                         document.querySelector('.login-container').style.animation = '';
@@ -319,13 +313,11 @@
             }, 1500);
         });
 
-        // Clear error on input
         document.getElementById('password').addEventListener('input', function () {
             this.classList.remove('error');
             document.getElementById('errorMessage').classList.remove('show');
         });
 
-        // Shake animation
         const style = document.createElement('style');
         style.textContent = `
             @keyframes shake {

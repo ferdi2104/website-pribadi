@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
 
-# Ganti URL di bawah dengan domain website Anda setelah di-deploy
-Sitemap: https://YOUR-DOMAIN.com/sitemap.xml
+Sitemap: https://jokipro.vercel.app/sitemap.xml

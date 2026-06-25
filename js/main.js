@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initScrollAnimations();
     initCounterAnimations();
     initModal();
+    initAdminLogout();
 });
 
 /* ============================================
@@ -368,4 +369,23 @@ function hideFieldError(field) {
     if (errorEl && errorEl.classList.contains('field-error')) {
         errorEl.remove();
     }
+}
+
+function initAdminLogout() {
+    if (sessionStorage.getItem('jokipro_admin_auth') !== 'true') return;
+    document.querySelectorAll('a[href="login.html"]').forEach(link => {
+        if (link.textContent.includes('Login Admin')) {
+            link.textContent = '🚪 Logout (Admin)';
+            link.href = '#';
+            link.onclick = function(e) {
+                e.preventDefault();
+                if (confirm('Yakin ingin logout?')) {
+                    sessionStorage.removeItem('jokipro_admin_auth');
+                    sessionStorage.removeItem('jokipro_admin_user');
+                    sessionStorage.removeItem('jokipro_admin_login_time');
+                    window.location.href = 'index.html';
+                }
+            };
+        }
+    });
 }

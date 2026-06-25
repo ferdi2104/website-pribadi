@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Register - JokiPro">
+    <meta property="og:description" content="Daftar akun admin JokiPro">
+    <meta property="og:image" content="assets/og-image.png">
+    <meta property="og:url" content="register.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Register - JokiPro">
+    <meta name="twitter:description" content="Daftar akun admin JokiPro">
+    <meta name="twitter:image" content="assets/og-image.png">
+    <title>Register - JokiPro</title>
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.min.css">
+    <link rel="stylesheet" href="css/additional.min.css">
+    <style>
+        .register-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.08), rgba(249, 115, 22, 0.08));
+        }
+
+        .register-container {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 3rem;
+            width: 100%;
+            max-width: 440px;
+            text-align: center;
+        }
+
+        .register-logo {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .register-logo img {
+            height: 60px;
+            width: auto;
+        }
+
+        .register-title {
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .register-subtitle {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .register-form .form-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        .register-form label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .register-form input {
+            width: 100%;
+            padding: 1rem 1.25rem;
+            border: 2px solid var(--glass-border);
+            border-radius: 12px;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .register-form input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.1);
+        }
+
+        .register-form input.error {
+            border-color: #ef4444;
+        }
+
+        .register-form input.success {
+            border-color: #22c55e;
+        }
+
+        .password-toggle {
+            position: relative;
+        }
+
+        .password-toggle button {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        .error-message {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #ef4444;
+            padding: 1rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            display: none;
+            font-size: 0.9rem;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        .success-message {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            color: #22c55e;
+            padding: 1rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            display: none;
+            font-size: 0.9rem;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        .btn-register {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn-register:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(249, 115, 22, 0.3);
+        }
+
+        .btn-register:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .spinner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid transparent;
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .register-footer {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .register-footer a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .register-footer a:hover {
+            text-decoration: underline;
+        }
+
+        .theme-btn {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+        }
+
+        .password-strength {
+            margin-top: 0.5rem;
+            height: 4px;
+            border-radius: 2px;
+            background: var(--glass-border);
+            overflow: hidden;
+        }
+
+        .password-strength-bar {
+            height: 100%;
+            width: 0%;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .field-hint {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin-top: 0.25rem;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="#main-content" class="skip-to-content">Langsung ke konten utama</a>
+
+    <div class="theme-btn">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle Theme">
+            <span class="sun-icon">☀️</span>
+            <span class="moon-icon">🌙</span>
+        </button>
+    </div>
+
+    <div class="register-page" id="main-content">
+        <div class="register-container">
+            <div class="register-logo">
+                <img src="assets/logo.jpg" alt="JokiPro">
+            </div>
+
+            <h1 class="register-title">Buat Akun Admin</h1>
+            <p class="register-subtitle">Daftar untuk mengelola dashboard JokiPro</p>
+
+            <div class="error-message" id="errorMessage"></div>
+            <div class="success-message" id="successMessage"></div>
+
+            <form class="register-form" id="registerForm">
+                <div class="form-group">
+                    <label for="fullname">Nama Lengkap</label>
+                    <input type="text" id="fullname" name="fullname" placeholder="Masukkan nama lengkap" required autocomplete="name">
+                </div>
+
+                <div class="form-group">
+                    <label for="regUsername">Username</label>
+                    <input type="text" id="regUsername" name="username" placeholder="Masukkan username" required autocomplete="username">
+                    <div class="field-hint">Minimal 3 karakter, huruf/angka saja</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="regEmail">Email</label>
+                    <input type="email" id="regEmail" name="email" placeholder="Masukkan email" required autocomplete="email">
+                </div>
+
+                <div class="form-group">
+                    <label for="regPassword">Password</label>
+                    <div class="password-toggle">
+                        <input type="password" id="regPassword" name="password" placeholder="Minimal 6 karakter" required autocomplete="new-password">
+                        <button type="button" onclick="togglePassword('regPassword', 'toggleRegBtn')" id="toggleRegBtn">👁️</button>
+                    </div>
+                    <div class="password-strength">
+                        <div class="password-strength-bar" id="passwordStrengthBar"></div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="regConfirmPassword">Konfirmasi Password</label>
+                    <div class="password-toggle">
+                        <input type="password" id="regConfirmPassword" placeholder="Ulangi password" required autocomplete="new-password">
+                        <button type="button" onclick="togglePassword('regConfirmPassword', 'toggleConfirmBtn')" id="toggleConfirmBtn">👁️</button>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-register" id="registerBtn">
+                    <span>📝</span> Daftar
+                </button>
+            </form>
+
+            <div class="register-footer">
+                <p style="color: var(--text-secondary);">
+                    Sudah punya akun? <a href="login.html">Login di sini</a>
+                </p>
+                <p style="margin-top: 0.75rem;">
+                    <a href="index.html">← Kembali ke Website</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.min.js"></script>
+    <script>
+        function getUsers() {
+            const users = localStorage.getItem('jokipro_users');
+            return users ? JSON.parse(users) : [];
+        }
+
+        function saveUsers(users) {
+            localStorage.setItem('jokipro_users', JSON.stringify(users));
+        }
+
+        function togglePassword(inputId, btnId) {
+            const input = document.getElementById(inputId);
+            const btn = document.getElementById(btnId);
+            if (input.type === 'password') {
+                input.type = 'text';
+                btn.textContent = '🙈';
+            } else {
+                input.type = 'password';
+                btn.textContent = '👁️';
+            }
+        }
+
+        function checkPasswordStrength(password) {
+            let score = 0;
+            if (password.length >= 6) score += 25;
+            if (password.length >= 10) score += 15;
+            if (/[a-z]/.test(password)) score += 15;
+            if (/[A-Z]/.test(password)) score += 15;
+            if (/[0-9]/.test(password)) score += 15;
+            if (/[^a-zA-Z0-9]/.test(password)) score += 15;
+            return Math.min(100, score);
+        }
+
+        document.getElementById('regPassword').addEventListener('input', function () {
+            const score = checkPasswordStrength(this.value);
+            const bar = document.getElementById('passwordStrengthBar');
+            bar.style.width = score + '%';
+            if (score < 30) {
+                bar.style.background = '#ef4444';
+            } else if (score < 60) {
+                bar.style.background = '#f59e0b';
+            } else {
+                bar.style.background = '#22c55e';
+            }
+        });
+
+        document.getElementById('registerForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const fullname = document.getElementById('fullname').value.trim();
+            const username = document.getElementById('regUsername').value.trim().toLowerCase();
+            const email = document.getElementById('regEmail').value.trim();
+            const password = document.getElementById('regPassword').value;
+            const confirmPassword = document.getElementById('regConfirmPassword').value;
+            const errorMsg = document.getElementById('errorMessage');
+            const successMsg = document.getElementById('successMessage');
+            const registerBtn = document.getElementById('registerBtn');
+
+            errorMsg.classList.remove('show');
+            successMsg.classList.remove('show');
+
+            if (fullname.length < 2) {
+                errorMsg.textContent = '❌ Nama lengkap minimal 2 karakter!';
+                errorMsg.classList.add('show');
+                return;
+            }
+
+            if (username.length < 3 || !/^[a-z0-9_]+$/.test(username)) {
+                errorMsg.textContent = '❌ Username minimal 3 karakter (huruf/angka/underscore saja)!';
+                errorMsg.classList.add('show');
+                return;
+            }
+
+            if (!email || !email.includes('@')) {
+                errorMsg.textContent = '❌ Masukkan email yang valid!';
+                errorMsg.classList.add('show');
+                return;
+            }
+
+            if (password.length < 6) {
+                errorMsg.textContent = '❌ Password minimal 6 karakter!';
+                errorMsg.classList.add('show');
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                errorMsg.textContent = '❌ Konfirmasi password tidak cocok!';
+                errorMsg.classList.add('show');
+                return;
+            }
+
+            const users = getUsers();
+
+            if (users.find(u => u.username === username)) {
+                errorMsg.textContent = '❌ Username sudah terdaftar!';
+                errorMsg.classList.add('show');
+                return;
+            }
+
+            if (users.find(u => u.email === email)) {
+                errorMsg.textContent = '❌ Email sudah terdaftar!';
+                errorMsg.classList.add('show');
+                return;
+            }
+
+            registerBtn.disabled = true;
+            registerBtn.innerHTML = '<div class="spinner"></div> Mendaftarkan...';
+
+            setTimeout(() => {
+                const newUser = {
+                    id: 'user_' + Date.now(),
+                    fullname,
+                    username,
+                    email,
+                    passwordHash: btoa(password),
+                    registeredAt: new Date().toISOString()
+                };
+
+                users.push(newUser);
+                saveUsers(users);
+
+                // Auto-login after register
+                sessionStorage.setItem('jokipro_admin_auth', 'true');
+                sessionStorage.setItem('jokipro_admin_user', username);
+                sessionStorage.setItem('jokipro_admin_name', fullname);
+                sessionStorage.setItem('jokipro_admin_login_time', new Date().toISOString());
+
+                successMsg.textContent = '✅ Akun berhasil dibuat! Mengalihkan...';
+                successMsg.classList.add('show');
+                document.getElementById('registerForm').style.display = 'none';
+
+                setTimeout(() => {
+                    window.location.href = 'admin.html';
+                }, 1500);
+            }, 1000);
+        });
+    </script>
+    <div class="nav-overlay" id="navOverlay"></div>
+</body>
+
+</html>
