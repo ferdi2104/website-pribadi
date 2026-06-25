@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Login Customer - JokiPro">
+    <meta property="og:description" content="Login customer JokiPro untuk cek status order">
+    <meta property="og:image" content="assets/og-image.png">
+    <meta property="og:url" content="customer-login.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Login Customer - JokiPro">
+    <meta name="twitter:description" content="Login customer JokiPro untuk cek status order">
+    <meta name="twitter:image" content="assets/og-image.png">
+    <title>Login Customer - JokiPro</title>
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.min.css">
+    <link rel="stylesheet" href="css/additional.min.css">
+    <style>
+        .login-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.08), rgba(249, 115, 22, 0.08));
+        }
+
+        .login-container {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 3rem;
+            width: 100%;
+            max-width: 420px;
+            text-align: center;
+        }
+
+        .login-logo {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .login-logo img {
+            height: 60px;
+            width: auto;
+        }
+
+        .login-title {
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .login-subtitle {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .login-form .form-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        .login-form label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .login-form input {
+            width: 100%;
+            padding: 1rem 1.25rem;
+            border: 2px solid var(--glass-border);
+            border-radius: 12px;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .login-form input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.1);
+        }
+
+        .login-form input.error {
+            border-color: #ef4444;
+        }
+
+        .error-message {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #ef4444;
+            padding: 1rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        .btn-login {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(249, 115, 22, 0.3);
+        }
+
+        .btn-login:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .spinner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid transparent;
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .login-footer {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .login-footer a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .login-footer a:hover {
+            text-decoration: underline;
+        }
+
+        .theme-btn {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="#main-content" class="skip-to-content">Langsung ke konten utama</a>
+
+    <div class="theme-btn">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle Theme">
+            <span class="sun-icon">☀️</span>
+            <span class="moon-icon">🌙</span>
+        </button>
+    </div>
+
+    <div class="login-page" id="main-content">
+        <div class="login-container">
+            <div class="login-logo">
+                <img src="assets/logo.jpg" alt="JokiPro">
+            </div>
+
+            <h1 class="login-title">Login Customer</h1>
+            <p class="login-subtitle">Masuk untuk cek status order Anda</p>
+
+            <div class="error-message" id="errorMessage">❌ Username atau password salah!</div>
+
+            <form class="login-form" id="loginForm">
+                <div class="form-group">
+                    <label for="username">Username / Email</label>
+                    <input type="text" id="username" name="username" placeholder="Masukkan username atau email" required
+                        autocomplete="username">
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Masukkan password" required
+                        autocomplete="current-password">
+                </div>
+
+                <button type="submit" class="btn-login" id="loginBtn">
+                    <span>🔓</span> Login
+                </button>
+            </form>
+
+            <div class="login-footer">
+                <p style="color: var(--text-secondary); margin-bottom: 0.5rem;">
+                    Belum punya akun? <a href="register.html">Daftar di sini</a>
+                </p>
+                <p style="color: var(--text-secondary);">
+                    <a href="index.html">← Kembali ke Website</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.min.js"></script>
+    <script>
+        if (sessionStorage.getItem('jokipro_customer_auth') === 'true') {
+            window.location.href = 'customer-dashboard.html';
+        }
+
+        function getUsers() {
+            const users = localStorage.getItem('jokipro_users');
+            return users ? JSON.parse(users) : [];
+        }
+
+        document.getElementById('loginForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const username = document.getElementById('username').value.trim().toLowerCase();
+            const password = document.getElementById('password').value;
+            const errorMsg = document.getElementById('errorMessage');
+            const loginBtn = document.getElementById('loginBtn');
+
+            loginBtn.disabled = true;
+            loginBtn.innerHTML = '<div class="spinner"></div> Memverifikasi...';
+            errorMsg.classList.remove('show');
+
+            setTimeout(() => {
+                const users = getUsers();
+                const user = users.find(u =>
+                    u.username === username || (u.email && u.email.toLowerCase() === username)
+                );
+
+                if (user && user.passwordHash === btoa(password)) {
+                    sessionStorage.setItem('jokipro_customer_auth', 'true');
+                    sessionStorage.setItem('jokipro_customer_user', user.username);
+                    sessionStorage.setItem('jokipro_customer_name', user.fullname || user.username);
+                    sessionStorage.setItem('jokipro_customer_email', user.email || '');
+                    sessionStorage.setItem('jokipro_customer_login_time', new Date().toISOString());
+
+                    loginBtn.innerHTML = '✅ Berhasil! Mengalihkan...';
+                    loginBtn.style.background = 'linear-gradient(135deg, #22c55e, #16a34a)';
+
+                    setTimeout(() => {
+                        window.location.href = 'customer-dashboard.html';
+                    }, 1000);
+                } else {
+                    errorMsg.classList.add('show');
+                    document.getElementById('password').classList.add('error');
+                    loginBtn.disabled = false;
+                    loginBtn.innerHTML = '<span>🔓</span> Login';
+                }
+            }, 1500);
+        });
+
+        document.getElementById('password').addEventListener('input', function () {
+            this.classList.remove('error');
+            document.getElementById('errorMessage').classList.remove('show');
+        });
+    </script>
+    <div class="nav-overlay" id="navOverlay"></div>
+</body>
+
+</html>

@@ -6,15 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Register - JokiPro">
-    <meta property="og:description" content="Daftar akun admin JokiPro">
+    <meta property="og:title" content="Register Customer - JokiPro">
+    <meta property="og:description" content="Daftar akun customer JokiPro">
     <meta property="og:image" content="assets/og-image.png">
     <meta property="og:url" content="register.html">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Register - JokiPro">
     <meta name="twitter:description" content="Daftar akun admin JokiPro">
     <meta name="twitter:image" content="assets/og-image.png">
-    <title>Register - JokiPro</title>
+    <title>Register Customer - JokiPro</title>
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -251,8 +251,8 @@
                 <img src="assets/logo.jpg" alt="JokiPro">
             </div>
 
-            <h1 class="register-title">Buat Akun Admin</h1>
-            <p class="register-subtitle">Daftar untuk mengelola dashboard JokiPro</p>
+            <h1 class="register-title">Buat Akun Customer</h1>
+            <p class="register-subtitle">Daftar untuk melacak order dan riwayat pemesanan</p>
 
             <div class="error-message" id="errorMessage"></div>
             <div class="success-message" id="successMessage"></div>
@@ -300,7 +300,7 @@
 
             <div class="register-footer">
                 <p style="color: var(--text-secondary);">
-                    Sudah punya akun? <a href="login.html">Login di sini</a>
+                    Sudah punya akun? <a href="customer-login.html">Login di sini</a>
                 </p>
                 <p style="margin-top: 0.75rem;">
                     <a href="index.html">← Kembali ke Website</a>
@@ -432,17 +432,18 @@
                 saveUsers(users);
 
                 // Auto-login after register
-                sessionStorage.setItem('jokipro_admin_auth', 'true');
-                sessionStorage.setItem('jokipro_admin_user', username);
-                sessionStorage.setItem('jokipro_admin_name', fullname);
-                sessionStorage.setItem('jokipro_admin_login_time', new Date().toISOString());
+                sessionStorage.setItem('jokipro_customer_auth', 'true');
+                sessionStorage.setItem('jokipro_customer_user', username);
+                sessionStorage.setItem('jokipro_customer_name', fullname);
+                sessionStorage.setItem('jokipro_customer_email', email);
+                sessionStorage.setItem('jokipro_customer_login_time', new Date().toISOString());
 
                 successMsg.textContent = '✅ Akun berhasil dibuat! Mengalihkan...';
                 successMsg.classList.add('show');
                 document.getElementById('registerForm').style.display = 'none';
 
                 setTimeout(() => {
-                    window.location.href = 'admin.html';
+                    window.location.href = 'customer-dashboard.html';
                 }, 1500);
             }, 1000);
         });

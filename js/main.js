@@ -372,20 +372,40 @@ function hideFieldError(field) {
 }
 
 function initAdminLogout() {
-    if (sessionStorage.getItem('jokipro_admin_auth') !== 'true') return;
-    document.querySelectorAll('a[href="login.html"]').forEach(link => {
-        if (link.textContent.includes('Login Admin')) {
-            link.textContent = '🚪 Logout (Admin)';
-            link.href = '#';
-            link.onclick = function(e) {
-                e.preventDefault();
-                if (confirm('Yakin ingin logout?')) {
-                    sessionStorage.removeItem('jokipro_admin_auth');
-                    sessionStorage.removeItem('jokipro_admin_user');
-                    sessionStorage.removeItem('jokipro_admin_login_time');
-                    window.location.href = 'index.html';
-                }
-            };
-        }
-    });
+    if (sessionStorage.getItem('jokipro_admin_auth') === 'true') {
+        document.querySelectorAll('a[href="login.html"]').forEach(link => {
+            if (link.textContent.includes('Login Admin')) {
+                link.textContent = '🚪 Logout (Admin)';
+                link.href = '#';
+                link.onclick = function(e) {
+                    e.preventDefault();
+                    if (confirm('Yakin ingin logout?')) {
+                        sessionStorage.removeItem('jokipro_admin_auth');
+                        sessionStorage.removeItem('jokipro_admin_user');
+                        sessionStorage.removeItem('jokipro_admin_login_time');
+                        window.location.href = 'index.html';
+                    }
+                };
+            }
+        });
+    }
+    if (sessionStorage.getItem('jokipro_customer_auth') === 'true') {
+        document.querySelectorAll('a[href="customer-login.html"]').forEach(link => {
+            if (link.textContent.includes('Customer') || link.textContent.includes('👤')) {
+                link.textContent = '🚪 Logout (Customer)';
+                link.href = '#';
+                link.onclick = function(e) {
+                    e.preventDefault();
+                    if (confirm('Yakin ingin logout?')) {
+                        sessionStorage.removeItem('jokipro_customer_auth');
+                        sessionStorage.removeItem('jokipro_customer_user');
+                        sessionStorage.removeItem('jokipro_customer_name');
+                        sessionStorage.removeItem('jokipro_customer_email');
+                        sessionStorage.removeItem('jokipro_customer_login_time');
+                        window.location.href = 'index.html';
+                    }
+                };
+            }
+        });
+    }
 }
