@@ -6,15 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Login Admin - JokiPro">
-    <meta property="og:description" content="Login Admin - JokiPro">
+    <meta property="og:title" content="Login - JokiPro">
+    <meta property="og:description" content="Masuk ke JokiPro">
     <meta property="og:image" content="assets/og-image.png">
     <meta property="og:url" content="login.html">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Login Admin - JokiPro">
-    <meta name="twitter:description" content="Login Admin - JokiPro">
+    <meta name="twitter:title" content="Login - JokiPro">
+    <meta name="twitter:description" content="Masuk ke JokiPro">
     <meta name="twitter:image" content="assets/og-image.png">
-    <title>Login Admin - JokiPro</title>
+    <title>Login - JokiPro</title>
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -209,8 +209,8 @@
                 <img src="assets/logo.jpg" alt="JokiPro Admin">
             </div>
 
-            <h1 class="login-title">Login Admin</h1>
-            <p class="login-subtitle">Masukkan kredensial untuk akses dashboard</p>
+            <h1 class="login-title">Masuk ke JokiPro</h1>
+            <p class="login-subtitle">Masuk untuk mengakses website</p>
 
             <div class="error-message" id="errorMessage">
                 ❌ Username atau password salah!
@@ -238,8 +238,11 @@
             </form>
 
             <div class="login-footer">
-                <p style="color: var(--text-secondary);">
-                    <a href="index.html">← Kembali ke Website</a>
+                <p style="color: var(--text-secondary); margin-bottom: 0.5rem;">
+                    Belum punya akun? <a href="register.html">Daftar di sini</a>
+                </p>
+                <p style="color: var(--text-secondary); font-size: 0.85rem;">
+                    Admin: <strong>admin</strong> / <strong>jokipro2024</strong>
                 </p>
             </div>
         </div>
@@ -254,6 +257,14 @@
 
         if (sessionStorage.getItem('jokipro_admin_auth') === 'true') {
             window.location.href = 'admin.html';
+        }
+        if (sessionStorage.getItem('jokipro_customer_auth') === 'true') {
+            window.location.href = 'index.html';
+        }
+
+        function getUsers() {
+            const users = localStorage.getItem('jokipro_users');
+            return users ? JSON.parse(users) : [];
         }
 
         function togglePassword() {
@@ -283,21 +294,39 @@
             setTimeout(() => {
                 const passwordHash = btoa(password);
                 let loginSuccess = false;
+                let isAdmin = false;
+                let userName = username;
 
                 if (username === ADMIN_CREDENTIALS.username && passwordHash === ADMIN_CREDENTIALS.passwordHash) {
                     loginSuccess = true;
+                    isAdmin = true;
+                    userName = 'Admin';
+                } else {
+                    const users = getUsers();
+                    const user = users.find(u => u.username === username || (u.email && u.email.toLowerCase() === username));
+                    if (user && user.passwordHash === passwordHash) {
+                        loginSuccess = true;
+                        userName = user.fullname || user.username;
+                    }
                 }
 
                 if (loginSuccess) {
-                    sessionStorage.setItem('jokipro_admin_auth', 'true');
-                    sessionStorage.setItem('jokipro_admin_user', 'Admin');
-                    sessionStorage.setItem('jokipro_admin_login_time', new Date().toISOString());
+                    if (isAdmin) {
+                        sessionStorage.setItem('jokipro_admin_auth', 'true');
+                        sessionStorage.setItem('jokipro_admin_user', userName);
+                        sessionStorage.setItem('jokipro_admin_login_time', new Date().toISOString());
+                    } else {
+                        sessionStorage.setItem('jokipro_customer_auth', 'true');
+                        sessionStorage.setItem('jokipro_customer_user', userName);
+                        sessionStorage.setItem('jokipro_customer_name', userName);
+                        sessionStorage.setItem('jokipro_customer_login_time', new Date().toISOString());
+                    }
 
                     loginBtn.innerHTML = '✅ Berhasil! Mengalihkan...';
                     loginBtn.style.background = 'linear-gradient(135deg, #22c55e, #16a34a)';
 
                     setTimeout(() => {
-                        window.location.href = 'admin.html';
+                        window.location.href = isAdmin ? 'admin.html' : 'index.html';
                     }, 1000);
                 } else {
                     errorMsg.classList.add('show');
