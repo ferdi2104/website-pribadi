@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="600" height="400">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7c3aed"/>
+      <stop offset="100%" style="stop-color:#a855f7"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="400" fill="url(#bg)" rx="16"/>
+  <circle cx="50" cy="350" r="3" fill="rgba(255,255,255,0.15)"/>
+  <circle cx="70" cy="350" r="3" fill="rgba(255,255,255,0.15)"/>
+  <circle cx="530" cy="350" r="3" fill="rgba(255,255,255,0.15)"/>
+  <circle cx="550" cy="350" r="3" fill="rgba(255,255,255,0.15)"/>
+  <g transform="translate(130,60)">
+    <rect x="0" y="0" width="340" height="240" rx="12" fill="white" opacity="0.95"/>
+    <line x1="50" y1="200" x2="310" y2="200" stroke="#e5e7eb" stroke-width="1"/>
+    <line x1="50" y1="160" x2="310" y2="160" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="4"/>
+    <line x1="50" y1="120" x2="310" y2="120" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="4"/>
+    <line x1="50" y1="80" x2="310" y2="80" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="4"/>
+    <rect x="70" y="110" width="30" height="90" rx="4" fill="#ef4444" opacity="0.8"/>
+    <rect x="120" y="80" width="30" height="120" rx="4" fill="#f97316" opacity="0.8"/>
+    <rect x="170" y="60" width="30" height="140" rx="4" fill="#7c3aed" opacity="0.8"/>
+    <rect x="220" y="90" width="30" height="110" rx="4" fill="#2563eb" opacity="0.8"/>
+    <rect x="270" y="70" width="30" height="130" rx="4" fill="#22c55e" opacity="0.8"/>
+    <text x="85" y="220" font-family="Arial,sans-serif" font-size="10" fill="#64748b" text-anchor="middle">Q1</text>
+    <text x="135" y="220" font-family="Arial,sans-serif" font-size="10" fill="#64748b" text-anchor="middle">Q2</text>
+    <text x="185" y="220" font-family="Arial,sans-serif" font-size="10" fill="#64748b" text-anchor="middle">Q3</text>
+    <text x="235" y="220" font-family="Arial,sans-serif" font-size="10" fill="#64748b" text-anchor="middle">Q4</text>
+    <text x="285" y="220" font-family="Arial,sans-serif" font-size="10" fill="#64748b" text-anchor="middle">Q5</text>
+    <polyline points="85,110 135,80 185,60 235,90 285,70" stroke="#ef4444" stroke-width="2" fill="none" stroke-linecap="round"/>
+  </g>
+  <rect x="30" y="30" width="110" height="32" rx="16" fill="rgba(255,255,255,0.9)"/>
+  <text x="85" y="52" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="#7c3aed" text-anchor="middle">&#x1F4C8; Analisis Data</text>
+  <rect x="460" y="30" width="110" height="32" rx="16" fill="rgba(34,197,94,0.9)"/>
+  <text x="515" y="52" font-family="Arial,sans-serif" font-size="14" font-weight="700" fill="white" text-anchor="middle">&#x2B50; 98</text>
+  <text x="300" y="340" font-family="Arial,sans-serif" font-size="20" font-weight="700" fill="white" text-anchor="middle">SEM-PLS Analysis</text>
+  <text x="300" y="366" font-family="Arial,sans-serif" font-size="13" fill="rgba(255,255,255,0.8)" text-anchor="middle">&#x1F4CA; SmartPLS &middot; 7 Hari</text>
+</svg>

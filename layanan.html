@@ -6,6 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
         content="Layanan Joki Tugas JokiPro - Essay, Skripsi, Programming, Analisis Data, Desain, dan berbagai jenis tugas lainnya.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Layanan - JokiPro | Jasa Joki Tugas Profesional">
+    <meta property="og:description" content="Layanan Joki Tugas JokiPro - Essay, Skripsi, Programming, Analisis Data, Desain, dan berbagai jenis tugas lainnya.">
+    <meta property="og:image" content="assets/og-image.png">
+    <meta property="og:url" content="layanan.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Layanan - JokiPro | Jasa Joki Tugas Profesional">
+    <meta name="twitter:description" content="Layanan Joki Tugas JokiPro - Essay, Skripsi, Programming, Analisis Data, Desain, dan berbagai jenis tugas lainnya.">
+    <meta name="twitter:image" content="assets/og-image.png">
     <title>Layanan - JokiPro | Jasa Joki Tugas Profesional</title>
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,6 +27,8 @@
 </head>
 
 <body>
+    <a href="#main-content" class="skip-to-content">Langsung ke konten utama</a>
+
     <!-- Navbar -->
     <nav class="navbar" id="navbar">
         <div class="container">
@@ -29,6 +40,7 @@
                 <li><a href="index.html">Beranda</a></li>
                 <li><a href="layanan.html" class="active">Layanan</a></li>
                 <li><a href="harga.html">Harga</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
                 <li><a href="cara-kerja.html">Cara Kerja</a></li>
                 <li><a href="kontak.html">Kontak</a></li>
             </ul>
@@ -46,7 +58,7 @@
     </nav>
 
     <!-- Page Header -->
-    <section class="page-header">
+    <section class="page-header" id="main-content">
         <div class="container">
             <span class="section-badge">Layanan Kami</span>
             <h1 class="page-title">Layanan <span class="gradient-text">JokiPro</span></h1>
@@ -375,6 +387,28 @@
     </a>
 
     <script src="js/main.js"></script>
+    <script>
+        // Mobile menu overlay
+        (function() {
+            const hamburger = document.getElementById('hamburger');
+            const navLinks = document.getElementById('navLinks');
+            const overlay = document.getElementById('navOverlay');
+            if (hamburger && navLinks && overlay) {
+                hamburger.addEventListener('click', function() {
+                    const isOpen = navLinks.classList.contains('active');
+                    overlay.classList.toggle('active', !isOpen);
+                });
+                overlay.addEventListener('click', function() {
+                    navLinks.classList.remove('active');
+                    hamburger.classList.remove('active');
+                    overlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+            }
+        })();
+    </script>
+
+    <div class="nav-overlay" id="navOverlay"></div>
 </body>
 
 </html>

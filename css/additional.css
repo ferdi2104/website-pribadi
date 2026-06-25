@@ -34,7 +34,7 @@
     border-radius: var(--radius-2xl);
     font-size: 2rem;
     margin: 0 auto 1.25rem;
-    box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+    box-shadow: 0 10px 30px rgba(239, 68, 68, 0.3);
 }
 
 .why-card h3 {
@@ -96,7 +96,7 @@
     font-size: 1.25rem;
     font-weight: 800;
     border-radius: var(--radius-full);
-    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+    box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
 }
 
 .step-icon {
@@ -178,7 +178,7 @@
 }
 
 [data-theme="dark"] .author-avatar {
-    background: rgba(59, 130, 246, 0.15);
+    background: rgba(239, 68, 68, 0.15);
 }
 
 .author-name {

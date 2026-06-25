@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, follow">
+    <title>404 - Halaman Tidak Ditemukan | JokiPro</title>
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="404 - Halaman Tidak Ditemukan | JokiPro">
+    <meta property="og:description" content="Halaman yang Anda cari tidak ditemukan.">
+    <meta property="og:image" content="assets/og-image.png">
+    <meta property="og:url" content="404.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/additional.css">
+    <style>
+        .error-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .error-bg {
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+        }
+        .error-bg-circle {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.08;
+        }
+        .error-bg-circle:nth-child(1) {
+            width: 400px; height: 400px;
+            background: var(--primary-500);
+            top: -100px; right: -100px;
+        }
+        .error-bg-circle:nth-child(2) {
+            width: 300px; height: 300px;
+            background: var(--secondary-500);
+            bottom: -50px; left: -80px;
+        }
+        .error-code {
+            font-size: clamp(6rem, 15vw, 10rem);
+            font-weight: 800;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+        .error-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+        .error-page h1 {
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            margin-bottom: 0.75rem;
+        }
+        .error-page p {
+            color: var(--text-secondary);
+            max-width: 450px;
+            margin: 0 auto 2rem;
+            font-size: 1.0625rem;
+        }
+        .error-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+    </style>
+</head>
+<body>
+    <div class="error-page">
+        <div class="error-bg">
+            <div class="error-bg-circle"></div>
+            <div class="error-bg-circle"></div>
+        </div>
+        <div>
+            <div class="error-icon">🔍</div>
+            <div class="error-code">404</div>
+            <h1>Halaman Tidak Ditemukan</h1>
+            <p>Halaman yang Anda cari mungkin telah dipindahkan, dihapus, atau tidak pernah ada. Silakan kembali ke beranda.</p>
+            <div class="error-actions">
+                <a href="index.html" class="btn btn-primary btn-lg">Kembali ke Beranda</a>
+                <a href="kontak.html" class="btn btn-outline btn-lg">Hubungi Kami</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

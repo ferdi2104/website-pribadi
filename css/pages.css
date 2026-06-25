@@ -7,16 +7,16 @@
     padding: 10rem 0 4rem;
     text-align: center;
     background: linear-gradient(135deg,
-            rgba(59, 130, 246, 0.08) 0%,
-            rgba(139, 92, 246, 0.08) 50%,
-            rgba(236, 72, 153, 0.05) 100%);
+            rgba(239, 68, 68, 0.08) 0%,
+            rgba(249, 115, 22, 0.08) 50%,
+            rgba(251, 146, 60, 0.05) 100%);
 }
 
 [data-theme="dark"] .page-header {
     background: linear-gradient(135deg,
-            rgba(59, 130, 246, 0.15) 0%,
-            rgba(139, 92, 246, 0.12) 50%,
-            rgba(236, 72, 153, 0.08) 100%);
+            rgba(239, 68, 68, 0.15) 0%,
+            rgba(249, 115, 22, 0.12) 50%,
+            rgba(251, 146, 60, 0.08) 100%);
 }
 
 .page-title {
@@ -59,7 +59,7 @@
 
 .service-detail-card.featured {
     border: 2px solid var(--primary-500);
-    background: linear-gradient(135deg, rgba(59, 130, 246, 0.03) 0%, rgba(139, 92, 246, 0.03) 100%);
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.03) 0%, rgba(249, 115, 22, 0.03) 100%);
 }
 
 .popular-tag {
@@ -86,7 +86,7 @@
 }
 
 [data-theme="dark"] .service-detail-icon {
-    background: rgba(59, 130, 246, 0.15);
+    background: rgba(239, 68, 68, 0.15);
 }
 
 .service-detail-content h2 {
@@ -323,7 +323,7 @@
 }
 
 [data-theme="dark"] .payment-number {
-    background: rgba(59, 130, 246, 0.15);
+    background: rgba(239, 68, 68, 0.15);
     color: var(--primary-400);
 }
 
@@ -470,7 +470,7 @@
     border-radius: var(--radius-full);
     position: relative;
     z-index: 1;
-    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+    box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
 }
 
 .marker-number {
@@ -531,7 +531,7 @@
 }
 
 [data-theme="dark"] .info-box {
-    background: rgba(59, 130, 246, 0.15);
+    background: rgba(239, 68, 68, 0.15);
     color: var(--primary-400);
 }
 
@@ -722,7 +722,7 @@
 .form-group textarea:focus {
     outline: none;
     border-color: var(--primary-500);
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
 }
 
 .form-group input.error,

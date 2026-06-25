@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Metode Pembayaran JokiPro - Transfer Bank, E-Wallet, QRIS">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Pembayaran - JokiPro">
+    <meta property="og:description" content="Metode Pembayaran JokiPro - Transfer Bank, E-Wallet, QRIS">
+    <meta property="og:image" content="assets/og-image.png">
+    <meta property="og:url" content="pembayaran.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Pembayaran - JokiPro">
+    <meta name="twitter:description" content="Metode Pembayaran JokiPro - Transfer Bank, E-Wallet, QRIS">
+    <meta name="twitter:image" content="assets/og-image.png">
+    <title>Pembayaran - JokiPro</title>
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/additional.css">
+    <link rel="stylesheet" href="css/pages.css">
+    <style>
+        .payment-section {
+            padding: 4rem 0;
+        }
+
+        .payment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .payment-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .payment-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(249, 115, 22, 0.15);
+        }
+
+        .payment-card.highlight {
+            border: 2px solid var(--primary);
+            position: relative;
+        }
+
+        .payment-card.highlight::before {
+            content: '⚡ Paling Cepat';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .payment-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .payment-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .payment-card>p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .payment-details {
+            background: rgba(249, 115, 22, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .payment-detail-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px dashed var(--glass-border);
+        }
+
+        .payment-detail-item:last-child {
+            border-bottom: none;
+        }
+
+        .payment-detail-item .label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .payment-detail-item .value {
+            font-weight: 600;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .copy-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.3rem 0.6rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .copy-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .copy-btn.copied {
+            background: #22c55e;
+        }
+
+        /* QRIS Section */
+        .qris-section {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .qris-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .qris-image {
+            background: white;
+            padding: 1rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .qris-image img {
+            max-width: 250px;
+            border-radius: 8px;
+        }
+
+        .qris-info {
+            text-align: left;
+            max-width: 400px;
+        }
+
+        .qris-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .qris-info p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .qris-features {
+            list-style: none;
+            padding: 0;
+        }
+
+        .qris-features li {
+            padding: 0.5rem 0;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .qris-features li span {
+            color: #22c55e;
+        }
+
+        /* Payment Steps */
+        .payment-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .payment-step {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin: 0 auto 1rem;
+        }
+
+        .payment-step h4 {
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .payment-step p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .payment-note {
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .payment-note h4 {
+            color: #f59e0b;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .payment-note p {
+            color: var(--text-secondary);
+            margin: 0;
+        }
+
+        @media (max-width: 768px) {
+            .payment-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .qris-container {
+                flex-direction: column;
+            }
+
+            .qris-info {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <a href="#main-content" class="skip-to-content">Langsung ke konten utama</a>
+
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">📚</span>
+                <span class="logo-text">Joki<span class="highlight">Pro</span></span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Beranda</a></li>
+                <li><a href="layanan.html">Layanan</a></li>
+                <li><a href="harga.html">Harga</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="cara-kerja.html">Cara Kerja</a></li>
+                <li><a href="kontak.html">Kontak</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle Theme">
+                    <span class="sun-icon">☀️</span>
+                    <span class="moon-icon">🌙</span>
+                </button>
+                <a href="kontak.html" class="btn btn-primary">Pesan Sekarang</a>
+                <button class="hamburger" id="hamburger"
+                    aria-label="Menu"><span></span><span></span><span></span></button>
+            </div>
+        </div>
+    </nav>
+
+    <section class="page-header" id="main-content">
+        <div class="container">
+            <span class="section-badge">Pembayaran</span>
+            <h1 class="page-title">Metode <span class="gradient-text">Pembayaran</span></h1>
+            <p class="page-subtitle">Pilih metode pembayaran yang paling nyaman untuk Anda</p>
+        </div>
+    </section>
+
+    <section class="payment-section">
+        <div class="container">
+            <!-- QRIS Section -->
+            <div class="qris-section">
+                <div class="qris-container">
+                    <div class="qris-image">
+                        <img src="assets/qris.png" alt="QRIS JokiPro" loading="lazy"
+                            onerror="this.parentElement.innerHTML='<div style=\'padding:3rem;color:var(--text-secondary);\'>📱 QRIS</div>'">
+                    </div>
+                    <div class="qris-info">
+                        <h3>🔥 Bayar dengan QRIS</h3>
+                        <p>Scan kode QRIS di atas menggunakan aplikasi e-wallet atau mobile banking Anda.</p>
+                        <ul class="qris-features">
+                            <li><span>✓</span> Semua bank & e-wallet</li>
+                            <li><span>✓</span> Proses instan 24/7</li>
+                            <li><span>✓</span> Tanpa biaya admin</li>
+                            <li><span>✓</span> Aman & terenkripsi</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Payment Methods -->
+            <div class="payment-grid">
+                <!-- Bank Transfer -->
+                <div class="payment-card">
+                    <div class="payment-icon">🏦</div>
+                    <h3>Transfer Bank</h3>
+                    <p>Transfer melalui ATM, mobile banking, atau internet banking</p>
+                    <div class="payment-details">
+                        <div class="payment-detail-item">
+                            <span class="label">Bank</span>
+                            <span class="value">BCA</span>
+                        </div>
+                        <div class="payment-detail-item">
+                            <span class="label">No. Rekening</span>
+                            <span class="value">
+                                <span id="rekBca">1234567890</span>
+                                <button class="copy-btn" onclick="copyToClipboard('1234567890', this)">📋 Copy</button>
+                            </span>
+                        </div>
+                        <div class="payment-detail-item">
+                            <span class="label">Atas Nama</span>
+                            <span class="value">Ferdiyansyah</span>
+                        </div>
+                    </div>
+                    <div class="payment-details">
+                        <div class="payment-detail-item">
+                            <span class="label">Bank</span>
+                            <span class="value">BNI</span>
+                        </div>
+                        <div class="payment-detail-item">
+                            <span class="label">No. Rekening</span>
+                            <span class="value">
+                                <span id="rekBni">0987654321</span>
+                                <button class="copy-btn" onclick="copyToClipboard('0987654321', this)">📋 Copy</button>
+                            </span>
+                        </div>
+                        <div class="payment-detail-item">
+                            <span class="label">Atas Nama</span>
+                            <span class="value">Ferdiyansyah</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- E-Wallet -->
+                <div class="payment-card highlight">
+                    <div class="payment-icon">📱</div>
+                    <h3>E-Wallet</h3>
+                    <p>Pembayaran cepat melalui dompet digital favorit Anda</p>
+                    <div class="payment-details">
+                        <div class="payment-detail-item">
+                            <span class="label">GoPay</span>
+                            <span class="value">
+                                <span>08978672534</span>
+                                <button class="copy-btn" onclick="copyToClipboard('08978672534', this)">📋 Copy</button>
+                            </span>
+                        </div>
+                        <div class="payment-detail-item">
+                            <span class="label">OVO</span>
+                            <span class="value">
+                                <span>08978672534</span>
+                                <button class="copy-btn" onclick="copyToClipboard('08978672534', this)">📋 Copy</button>
+                            </span>
+                        </div>
+                        <div class="payment-detail-item">
+                            <span class="label">DANA</span>
+                            <span class="value">
+                                <span>08978672534</span>
+                                <button class="copy-btn" onclick="copyToClipboard('08978672534', this)">📋 Copy</button>
+                            </span>
+                        </div>
+                        <div class="payment-detail-item">
+                            <span class="label">ShopeePay</span>
+                            <span class="value">
+                                <span>08978672534</span>
+                                <button class="copy-btn" onclick="copyToClipboard('08978672534', this)">📋 Copy</button>
+                            </span>
+                        </div>
+                    </div>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary);">
+                        💡 Semua e-wallet menggunakan nomor yang sama
+                    </p>
+                </div>
+            </div>
+
+            <!-- Payment Steps -->
+            <h2 style="text-align: center; margin-bottom: 2rem;">Cara Pembayaran</h2>
+            <div class="payment-steps">
+                <div class="payment-step">
+                    <div class="step-number">1</div>
+                    <h4>Order & Konfirmasi</h4>
+                    <p>Kirim detail tugas Anda melalui form order atau WhatsApp. Tim kami akan memberikan estimasi
+                        harga.</p>
+                </div>
+                <div class="payment-step">
+                    <div class="step-number">2</div>
+                    <h4>Bayar DP 50%</h4>
+                    <p>Bayar uang muka 50% melalui metode pembayaran yang tersedia. Screenshot bukti transfer.</p>
+                </div>
+                <div class="payment-step">
+                    <div class="step-number">3</div>
+                    <h4>Kirim Bukti</h4>
+                    <p>Kirim bukti pembayaran ke WhatsApp admin. Pengerjaan akan langsung dimulai setelah konfirmasi.
+                    </p>
+                </div>
+                <div class="payment-step">
+                    <div class="step-number">4</div>
+                    <h4>Pelunasan</h4>
+                    <p>Setelah tugas selesai, bayar sisa 50% dan terima file lengkap hasil pengerjaan.</p>
+                </div>
+            </div>
+
+            <!-- Payment Note -->
+            <div class="payment-note">
+                <h4>⚠️ Penting!</h4>
+                <p>Pastikan Anda melakukan pembayaran ke rekening/nomor yang tertera di website ini. Jangan pernah
+                    transfer ke rekening lain yang mengatasnamakan JokiPro. Jika ragu, konfirmasi langsung melalui
+                    WhatsApp resmi kami.</p>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="https://wa.me/628978672534?text=Halo%20JokiPro,%20saya%20ingin%20konfirmasi%20pembayaran"
+                    class="btn btn-whatsapp btn-lg" target="_blank">
+                    📱 Konfirmasi Pembayaran via WhatsApp
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Butuh Bantuan?</h2>
+                <p>Tim kami siap membantu Anda 24/7. Hubungi kami untuk pertanyaan seputar pembayaran.</p>
+                <div class="cta-buttons">
+                    <a href="https://wa.me/628978672534" class="btn btn-whatsapp btn-lg" target="_blank"><span>📱</span>
+                        Chat WhatsApp</a>
+                    <a href="kontak.html" class="btn btn-outline-white btn-lg">Form Kontak</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo"><span class="logo-icon">📚</span><span class="logo-text">Joki<span
+                                class="highlight">Pro</span></span></a>
+                    <p>Layanan joki tugas profesional terpercaya.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Layanan</h4>
+                    <ul>
+                        <li><a href="layanan.html">Essay & Makalah</a></li>
+                        <li><a href="layanan.html">Skripsi & Thesis</a></li>
+                        <li><a href="layanan.html">Programming</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Perusahaan</h4>
+                    <ul>
+                        <li><a href="cara-kerja.html">Cara Kerja</a></li>
+                        <li><a href="harga.html">Harga</a></li>
+                        <li><a href="pembayaran.html">Pembayaran</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Hubungi Kami</h4>
+                    <ul>
+                        <li><span>📱</span> +62 897-867-2534</li>
+                        <li><span>✉️</span> ferdiyansyahpp@gmail.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 JokiPro. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/628978672534" class="floating-wa" target="_blank"
+        aria-label="Chat WhatsApp"><span>💬</span></a>
+    <script src="js/main.js"></script>
+    <script>
+        function copyToClipboard(text, btn) {
+            navigator.clipboard.writeText(text).then(() => {
+                const originalText = btn.innerHTML;
+                btn.innerHTML = '✓ Copied!';
+                btn.classList.add('copied');
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.classList.remove('copied');
+                }, 2000);
+            });
+        }
+    </script>
+    <script>
+        // Mobile menu overlay
+        (function() {
+            const hamburger = document.getElementById('hamburger');
+            const navLinks = document.getElementById('navLinks');
+            const overlay = document.getElementById('navOverlay');
+            if (hamburger && navLinks && overlay) {
+                hamburger.addEventListener('click', function() {
+                    const isOpen = navLinks.classList.contains('active');
+                    overlay.classList.toggle('active', !isOpen);
+                });
+                overlay.addEventListener('click', function() {
+                    navLinks.classList.remove('active');
+                    hamburger.classList.remove('active');
+                    overlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+            }
+        })();
+    </script>
+
+    <div class="nav-overlay" id="navOverlay"></div>
+</body>
+
+</html>
