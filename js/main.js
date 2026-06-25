@@ -391,7 +391,7 @@ function initAdminLogout() {
     }
     if (sessionStorage.getItem('jokipro_customer_auth') === 'true') {
         document.querySelectorAll('a[href="customer-login.html"]').forEach(link => {
-            if (link.textContent.includes('Customer') || link.textContent.includes('👤')) {
+            if (link.textContent.includes('Customer')) {
                 link.textContent = '🚪 Logout (Customer)';
                 link.href = '#';
                 link.onclick = function(e) {
